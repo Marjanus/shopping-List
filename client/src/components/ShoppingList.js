@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import ItemForm from './ItemForm';
 const apiUrl = "http://localhost:3001/api/list";
 
 
@@ -27,7 +28,7 @@ class ShoppingList extends Component {
 	handleDisplayResults(data){
 		let items = data.map((item) =>{
 			return (
-				<div key={item['_id']}>{item.name}</div>
+				<div key={item['_id']}>{item.name} <br/> {item.quantity}</div>
 			);
 		})
 		this.setState({data: items});
@@ -43,6 +44,9 @@ class ShoppingList extends Component {
 			<div>
 				<h1>List</h1>
 				{this.state.data}
+				<ItemForm 
+					apiUrl={apiUrl}
+				/>
 			</div>	
 		);
 	}
