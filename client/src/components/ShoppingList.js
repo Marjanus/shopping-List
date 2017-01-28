@@ -3,6 +3,7 @@ import axios from 'axios';
 import ItemsList from './ItemsList';
 import ItemForm from './ItemForm';
 const apiUrl = "http://localhost:3001/api/list";
+const intervalBetweenGet = 2000;
 
 
 class ShoppingList extends Component {
@@ -31,6 +32,7 @@ class ShoppingList extends Component {
 
 	componentDidMount(){
 		this.handleGetItems();
+		setInterval(this.handleGetItems, intervalBetweenGet);
 	}
 
 
