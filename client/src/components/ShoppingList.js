@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import ItemsList from './ItemsList';
 import ItemForm from './ItemForm';
 const apiUrl = "http://localhost:3001/api/list";
 
@@ -17,7 +18,6 @@ class ShoppingList extends Component {
 	handleGetItems(){
 		axios.get(apiUrl)
 			.then((response) => {
-				console.log(response.data);
 				this.handleDisplayResults(response.data);
 			})
 			.catch((error) => {
@@ -26,12 +26,7 @@ class ShoppingList extends Component {
 	}
 
 	handleDisplayResults(data){
-		let items = data.map((item) =>{
-			return (
-				<div key={item['_id']}>{item.name} <br/> {item.quantity}</div>
-			);
-		})
-		this.setState({data: items});
+		this.setState({data}); // ES6 syntax
 	}
 
 	componentDidMount(){
@@ -43,7 +38,7 @@ class ShoppingList extends Component {
 		return(
 			<div>
 				<h1>List</h1>
-				{this.state.data}
+				<ItemsList items={this.state.data}/>
 				<ItemForm 
 					apiUrl={apiUrl}
 				/>
