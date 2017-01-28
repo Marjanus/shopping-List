@@ -15,6 +15,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 
+// setting ES6 promises in order to avoid mongoose promises deprecetation warning
+mongoose.Promise = global.Promise;
+
 mongoose.connect(db);
 
 app.get('/', (req, res) =>{
