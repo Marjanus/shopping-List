@@ -13,26 +13,34 @@ class ShoppingList extends Component {
 			data: []
 		};
 		this.handleGetItems = this.handleGetItems.bind(this);
-		this.handleDisplayResults = this.handleDisplayResults.bind(this);
+		this.handleDeleteItem = this.handleDeleteItem.bind(this);
 	}
 
 	handleGetItems(){
 		axios.get(apiUrl)
 			.then((response) => {
-				this.handleDisplayResults(response.data);
+				this.setState({data: response.data},
+					console.log(this.state.data));
 			})
 			.catch((error) => {
 				console.log(error);
 			})
 	}
 
-	handleDisplayResults(data){
-		this.setState({data}); // ES6 syntax
+	componentWillMount(){
+		this.handleGetItems();
+		
 	}
 
 	componentDidMount(){
-		this.handleGetItems();
 		setInterval(this.handleGetItems, intervalBetweenGet);
+	}
+
+	handleDeleteItem(itemId){
+		axios.delete(`${apiUrl}/${itemId}`)
+			.catch((err) => {
+				console.log(error);
+			}); 
 	}
 
 
@@ -40,10 +48,14 @@ class ShoppingList extends Component {
 		return(
 			<div>
 				<h1>List</h1>
-				<ItemsList items={this.state.data}/>
+				<ItemsList
+					items={this.state.data}
+					onDeleteItem={this.handleDeleteItem}
+				/>
 				<ItemForm 
 					apiUrl={apiUrl}
 				/>
+				<button onClick={this.handleDeleteItem}>Test</button>
 			</div>	
 		);
 	}

@@ -10,7 +10,13 @@ class ItemsList extends Component{
 		return(
 			<ul>
 				{this.props.items.map((item) => {
-					return <Item key={item['_id']} name={item.name} quantity={item.quantity} />
+					return <Item 
+						key={item['_id']} 
+						name={item.name} 
+						quantity={item.quantity} 
+						itemId ={item['_id']}
+						onDeleteItem = {this.props.onDeleteItem}
+					/>
 				})
 				}
 			</ul>
