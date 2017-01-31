@@ -35,6 +35,8 @@ class Item extends Component{
 			updateName: '',
 			updateQuantity: ''
 		});
+		// hides update form
+		this.props.onSelectForUpdate("");
 	}
 
 	handleInputChange(e){

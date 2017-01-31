@@ -9,7 +9,6 @@ class ItemsList extends Component{
 	}
 
 	handleSelectForUpdate(itemId){
-		console.log(itemId);
 		this.setState({selectedForUpdate: itemId})
 	}
 
