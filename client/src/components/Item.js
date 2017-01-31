@@ -42,7 +42,6 @@ class Item extends Component{
 	handleInputChange(e){
 		let obj = {};
 		obj[e.target.name] = e.target.value;
-		console.log(obj);
 		this.setState(obj);
 		
 	}
