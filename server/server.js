@@ -24,26 +24,27 @@ app.get('/', (req, res) =>{
 	res.send('working');
 });
 
-router.get('/list', (req, res) => {
-	List.find((err, items) => {
-		if(err) return console.error(err);
-		res.send(items);
-	});
-});
+router.route('/list')
+	.get((req, res) => {
+		List.find((err, items) => {
+			if(err) return console.error(err);
+			res.send(items);
+		});
+	})
+	.post((req, res) => {
+		if (!req.body.name || !req.body.quantity) return res.sendStatus(400);
+		let newItem = new List();
+		newItem.name = req.body.name;
+		newItem.quantity = req.body.quantity;
+		
+		newItem.save((err, item) => {
+			if(err) res.send(err);
+			res.send("Item was added to the list"); 
+		});
+	})
 
-router.post('/list', (req, res) => {
-	if (!req.body.name || !req.body.quantity) return res.sendStatus(400);
-	let newItem = new List();
-	newItem.name = req.body.name;
-	newItem.quantity = req.body.quantity;
-	
-	newItem.save((err, item) => {
-		if(err) res.send(err);
-		res.send("Item was added to the list"); 
-	});
-})
-
-router.put('/list/:id', (req, res) => {
+router.route('/list/:id')
+	.put((req, res) => {
 		List.findById(req.params.id, (err, item) => {
 			if(err) res.send(err);
 			if(req.body.name) item.name = req.body.name;
@@ -53,9 +54,8 @@ router.put('/list/:id', (req, res) => {
 				res.send('Item was updated');
 			});	
 		});
-	});
-	
-router.delete('/list/:id', (req, res) => {
+	})
+	.delete((req, res) => {
 		let id = req.params.id;
 		List.findById(id, (err,item) => {
 			if(err) res.send(err);
