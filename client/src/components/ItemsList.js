@@ -4,6 +4,13 @@ import Item from './Item';
 class ItemsList extends Component{
 	constructor(props){
 		super(props);
+		this.state = {selectedForUpdate: ''};
+		this.handleSelectForUpdate = this.handleSelectForUpdate.bind(this);
+	}
+
+	handleSelectForUpdate(itemId){
+		console.log(itemId);
+		this.setState({selectedForUpdate: itemId})
 	}
 
 	render(){
@@ -16,6 +23,9 @@ class ItemsList extends Component{
 						quantity={item.quantity} 
 						itemId ={item['_id']}
 						onDeleteItem = {this.props.onDeleteItem}
+						onUpdateItem = {this.props.onUpdateItem}
+						onSelectForUpdate = {this.handleSelectForUpdate}
+						selectedId = {this.state.selectedForUpdate}
 					/>
 				})
 				}

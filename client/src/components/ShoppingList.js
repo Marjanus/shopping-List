@@ -14,13 +14,13 @@ class ShoppingList extends Component {
 		};
 		this.handleGetItems = this.handleGetItems.bind(this);
 		this.handleDeleteItem = this.handleDeleteItem.bind(this);
+		this.handleUpdateItem = this.handleUpdateItem.bind(this);
 	}
 
 	handleGetItems(){
 		axios.get(apiUrl)
 			.then((response) => {
-				this.setState({data: response.data},
-					console.log(this.state.data));
+				this.setState({data: response.data})
 			})
 			.catch((error) => {
 				console.log(error);
@@ -43,6 +43,16 @@ class ShoppingList extends Component {
 			}); 
 	}
 
+	handleUpdateItem(itemId, item){	
+		axios.put(`${apiUrl}/${itemId}`, {
+			name: item.name,
+			quantity: item.quantity
+		})
+		.catch((err) => {
+			console.log(err)
+		}) 
+	}
+
 
 	render(){
 		return(
@@ -51,6 +61,7 @@ class ShoppingList extends Component {
 				<ItemsList
 					items={this.state.data}
 					onDeleteItem={this.handleDeleteItem}
+					onUpdateItem={this.handleUpdateItem}
 				/>
 				<ItemForm 
 					apiUrl={apiUrl}
