@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Button } from 'react-bootstrap';
-import axios from 'axios';
 
 class ItemForm extends Component {
 	constructor(props){
@@ -25,19 +24,11 @@ class ItemForm extends Component {
 			//add ui warning;
 			return
 		}
-		axios.post(this.props.apiUrl, {
-			name: this.state.itemName,
-			quantity: this.state.itemQuantity
-		})
-			.then(
-				this.setState({
-					itemName: '',
-					itemQuantity: ''
-				})
-			)
-			.catch((err)=>{
-				console.log(err);
-			})
+		this.props.onPostItem(this.state.itemName, this.state.itemQuantity);
+		this.setState({
+			itemName: '',
+			itemQuantity: ''
+		});
 	}
 
 	render(){

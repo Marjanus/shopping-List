@@ -51,7 +51,7 @@ router.route('/list/:id')
 			if(req.body.quantity) item.quantity = req.body.quantity;
 			item.save((err, item) => {
 				if(err) res.send(err);
-				res.send('Item was updated');
+				return res.send('Item was updated');
 			});	
 		});
 	})
@@ -61,7 +61,7 @@ router.route('/list/:id')
 			if(err) res.send(err);
 			List.remove({_id: id}, err => {
 				if (err) res.send(err);
-				res.send('Item was deleted');
+				return res.send('Item was deleted');
 			});
 		});
 	});

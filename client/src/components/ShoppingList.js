@@ -13,6 +13,7 @@ class ShoppingList extends Component {
 			data: []
 		};
 		this.handleGetItems = this.handleGetItems.bind(this);
+		this.handlePostItem = this.handlePostItem.bind(this);
 		this.handleDeleteItem = this.handleDeleteItem.bind(this);
 		this.handleUpdateItem = this.handleUpdateItem.bind(this);
 	}
@@ -27,20 +28,40 @@ class ShoppingList extends Component {
 			})
 	}
 
-	componentWillMount(){
-		this.handleGetItems();
-		
-	}
-
-	componentDidMount(){
-		setInterval(this.handleGetItems, intervalBetweenGet);
+	handlePostItem(name, quantity){
+		axios.post(apiUrl, {
+			name: name,
+			quantity: quantity
+		})
+		.then(() => {
+			//optimistic update
+			let newState = this.state.data.concat({
+				_id: Date.now().toString(),
+				name: name,
+				quantity: quantity
+			});
+			this.setState({ data: newState });
+		})
+		.catch((err)=>{
+				console.log(err);
+		})
 	}
 
 	handleDeleteItem(itemId){
 		axios.delete(`${apiUrl}/${itemId}`)
-			.catch((err) => {
-				console.log(error);
-			}); 
+		.then(()=> {
+			//optimistic update
+			function filterDeleted(item) {
+				return item['_id'] !== itemId;
+			}
+
+			let newState = this.state.data.filter(filterDeleted);
+			this.setState({data: newState});
+		})	
+
+		.catch((err) => {
+			console.log(error);
+		}); 
 	}
 
 	handleUpdateItem(itemId, item){	
@@ -48,11 +69,27 @@ class ShoppingList extends Component {
 			name: item.name,
 			quantity: item.quantity
 		})
+		.then(() => {
+			//optimistic update
+			let newState = this.state.data.map((selectedItem, i) => {
+				if (selectedItem['_id'] === itemId){
+					if (item.name) { selectedItem.name = item.name }
+					if (item.quantity){ selectedItem.quantity = item.quantity }
+				}
+				return selectedItem;
+			});
+			this.setState({data: newState});
+		})
 		.catch((err) => {
 			console.log(err)
 		}) 
 	}
 
+
+	componentDidMount(){
+		this.handleGetItems();
+		setInterval(this.handleGetItems, intervalBetweenGet);
+	}
 
 	render(){
 		return(
@@ -64,9 +101,8 @@ class ShoppingList extends Component {
 					onUpdateItem={this.handleUpdateItem}
 				/>
 				<ItemForm 
-					apiUrl={apiUrl}
+					onPostItem = {this.handlePostItem}
 				/>
-				<button onClick={this.handleDeleteItem}>Test</button>
 			</div>	
 		);
 	}
