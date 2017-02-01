@@ -1,82 +1,37 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Button} from 'react-bootstrap';
 
-class Item extends Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			updateName: '',
-			updateQuantity: ''
-		};
-		this.handleRemoveItem = this.handleRemoveItem.bind(this);
-		this.handleUpdateItem = this.handleUpdateItem.bind(this); 
-		this.handleSelectItem = this.handleSelectItem.bind(this);
-		this.handleInputChange = this.handleInputChange.bind(this);
-	}
-
-	handleSelectItem(){
-		let itemId = this.props.itemId;
-		this.props.onSelectForUpdate(itemId);
-	}
-
-	handleRemoveItem(){
-		let itemId = this.props.itemId;
-		this.props.onDeleteItem(itemId);
-	}
-
-	handleUpdateItem(){
-		let itemId = this.props.itemId;
-		let item = {};
-		if (this.state.updateName){item.name = this.state.updateName}
-		if (this.state.updateQuantity){item.quantity = this.state.updateQuantity}
-		this.props.onUpdateItem(itemId, item);
-		this.setState({ 
-			updateName: '',
-			updateQuantity: ''
-		});
-		// hides update form
-		this.props.onSelectForUpdate("");
-	}
-
-	handleInputChange(e){
-		let obj = {};
-		obj[e.target.name] = e.target.value;
-		this.setState(obj);		
-	}
-
-	render(){
-
-		let UpdateForm = (this.props.selectedId === this.props.itemId)  
+function Item(props){
+	let UpdateForm = (props.selectedId === props.itemId)  
 			? <form>
 				<input 
 					type="text"
 					name="updateName"
 					placeholder="Change Item Name"
-					value = {this.state.updateName}
-					onChange = {this.handleInputChange}
+					value = {props.updateName}
+					onChange = {props.onInputChange}
 				/>
 				<input 
 					type="text"
 					name="updateQuantity"
 					placeholder="Change Item Quantity"
-					value = {this.state.updateQuantity}
-					onChange = {this.handleInputChange}
+					value = {props.updateQuantity}
+					onChange = {props.onInputChange}
 				/>
-				<Button onClick={this.handleUpdateItem}>Update Item</Button>
+				<Button onClick={props.onUpdateItem}>Update Item</Button>
 			  </form>
 			: null;
 
-		return(
-			<li>
-				Name: {this.props.name}
-				<br/>
-				Quantity: {this.props.quantity}
-				<Button bsStyle='danger' onClick={this.handleRemoveItem}>Delete</Button>
-				<Button bsStyle='primary' onClick={this.handleSelectItem}>Update</Button>
-				{UpdateForm}
-			</li>
-		);
-	}
+	return (
+		<li>
+			Name: {props.name}
+			<br/>
+			Quantity: {props.quantity}
+			<Button bsStyle='danger' onClick={props.onRemoveItem}>Delete</Button>
+			<Button bsStyle='primary' onClick={props.onSelectItem}>Update</Button>
+			{UpdateForm}
+		</li>
+	);
 }
 
 export default Item;

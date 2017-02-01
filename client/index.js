@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ShoppingList from './src/components/ShoppingList';
+import ShoppingListContainer from './src/containers/ShoppingListContainer';
 
 ReactDOM.render(
-	<ShoppingList/>,
+	<ShoppingListContainer />,
 	document.getElementById('app')
 );

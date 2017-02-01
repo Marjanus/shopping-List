@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Item from './Item';
+import ItemContainer from './ItemContainer';
 
-class ItemsList extends Component{
+class ItemsListContainer extends Component{
 	constructor(props){
 		super(props);
 		this.state = {selectedForUpdate: ''};
@@ -17,7 +17,7 @@ class ItemsList extends Component{
 			<ul>
 				{this.props.items.map((item) => {
 					return(
-						<Item 
+						<ItemContainer 
 							key={item['_id']} 
 							itemId ={item['_id']}
 							name={item.name} 
@@ -35,4 +35,4 @@ class ItemsList extends Component{
 	}
 }
 
-export default ItemsList;
+export default ItemsListContainer;
