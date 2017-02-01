@@ -1,8 +1,8 @@
 'use strict';
 
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-const listSchema = mongoose.Schema({
+var listSchema = mongoose.Schema({
 	name: String,
 	quantity: String
 });
