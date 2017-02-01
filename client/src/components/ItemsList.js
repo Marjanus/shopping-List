@@ -16,16 +16,18 @@ class ItemsList extends Component{
 		return(
 			<ul>
 				{this.props.items.map((item) => {
-					return <Item 
-						key={item['_id']} 
-						name={item.name} 
-						quantity={item.quantity} 
-						itemId ={item['_id']}
-						onDeleteItem = {this.props.onDeleteItem}
-						onUpdateItem = {this.props.onUpdateItem}
-						onSelectForUpdate = {this.handleSelectForUpdate}
-						selectedId = {this.state.selectedForUpdate}
-					/>
+					return(
+						<Item 
+							key={item['_id']} 
+							itemId ={item['_id']}
+							name={item.name} 
+							quantity={item.quantity} 
+							onDeleteItem = {this.props.onDeleteItem}
+							onUpdateItem = {this.props.onUpdateItem}
+							onSelectForUpdate = {this.handleSelectForUpdate}
+							selectedId = {this.state.selectedForUpdate}
+						/>
+					) 
 				})
 				}
 			</ul>

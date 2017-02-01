@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
 
-
 class Item extends Component{
 	constructor(props){
 		super(props);
@@ -42,8 +41,7 @@ class Item extends Component{
 	handleInputChange(e){
 		let obj = {};
 		obj[e.target.name] = e.target.value;
-		this.setState(obj);
-		
+		this.setState(obj);		
 	}
 
 	render(){
@@ -66,7 +64,7 @@ class Item extends Component{
 				/>
 				<Button onClick={this.handleUpdateItem}>Update Item</Button>
 			  </form>
-			: null
+			: null;
 
 		return(
 			<li>
@@ -79,7 +77,6 @@ class Item extends Component{
 			</li>
 		);
 	}
-
 }
 
 export default Item;

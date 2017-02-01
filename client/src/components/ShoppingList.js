@@ -5,7 +5,6 @@ import ItemForm from './ItemForm';
 const apiUrl = "http://localhost:3001/api/list";
 const intervalBetweenGet = 2000;
 
-
 class ShoppingList extends Component {
 	constructor(props){
 		super(props);
@@ -58,7 +57,6 @@ class ShoppingList extends Component {
 			let newState = this.state.data.filter(filterDeleted);
 			this.setState({data: newState});
 		})	
-
 		.catch((err) => {
 			console.log(error);
 		}); 
@@ -71,7 +69,7 @@ class ShoppingList extends Component {
 		})
 		.then(() => {
 			//optimistic update
-			let newState = this.state.data.map((selectedItem, i) => {
+			let newState = this.state.data.map((selectedItem) => {
 				if (selectedItem['_id'] === itemId){
 					if (item.name) { selectedItem.name = item.name }
 					if (item.quantity){ selectedItem.quantity = item.quantity }
@@ -84,7 +82,6 @@ class ShoppingList extends Component {
 			console.log(err)
 		}) 
 	}
-
 
 	componentDidMount(){
 		this.handleGetItems();
@@ -106,6 +103,6 @@ class ShoppingList extends Component {
 			</div>	
 		);
 	}
-};
+}
 
 export default ShoppingList;
