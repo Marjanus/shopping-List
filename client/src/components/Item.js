@@ -19,7 +19,7 @@ function Item(props){
 					onChange = {props.onInputChange}
 				/>
 				<Button onClick={props.onUpdateItem}>Update Item</Button>
-			  </form>
+			</form>
 			: null;
 
 	return (
@@ -35,16 +35,16 @@ function Item(props){
 }
 
 Item.propTypes = {
-	selectedId: React.PropTypes.string,
-	itemId: React.PropTypes.string.isRequired,
-	name: React.PropTypes.string.isRequired,
-	quantity: React.PropTypes.string.isRequired,
-	updateName: React.PropTypes.string,
-	updateQuantity: React.PropTypes.string,
-	onInputChange:React.PropTypes.func.isRequired,
-	onUpdateItem: React.PropTypes.func.isRequired,
-	onRemoveItem: React.PropTypes.func.isRequired,
-	onSelectItem: React.PropTypes.func.isRequired
+	selectedId: PropTypes.string,
+	itemId:PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	quantity: PropTypes.string.isRequired,
+	updateName: PropTypes.string,
+	updateQuantity: PropTypes.string,
+	onInputChange: PropTypes.func.isRequired,
+	onUpdateItem: PropTypes.func.isRequired,
+	onRemoveItem: PropTypes.func.isRequired,
+	onSelectItem: PropTypes.func.isRequired
 };
 
 export default Item;

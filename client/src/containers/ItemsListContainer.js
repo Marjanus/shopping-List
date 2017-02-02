@@ -1,12 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import ItemContainer from './ItemContainer';
 
-class ItemsListContainer extends Component{
-	constructor(props){
-		super(props);
-		this.state = {selectedForUpdate: ''};
-		this.handleSelectForUpdate = this.handleSelectForUpdate.bind(this);
-	}
+class ItemsListContainer extends Component{ 
+		constructor(props){
+			super(props);
+			this.handleSelectForUpdate = this.handleSelectForUpdate.bind(this);
+		}
 
 	handleSelectForUpdate(itemId){
 		this.setState({selectedForUpdate: itemId})
@@ -36,9 +35,9 @@ class ItemsListContainer extends Component{
 }
 
 ItemsListContainer.propTypes = {
-	items: React.PropTypes.array,
-	onDeleteItem: React.PropTypes.func.isRequired,
-	onUpdateItem: React.PropTypes.func.isRequired
+	items: PropTypes.array,
+	onDeleteItem: PropTypes.func.isRequired,
+	onUpdateItem: PropTypes.func.isRequired
 };
 
 export default ItemsListContainer;

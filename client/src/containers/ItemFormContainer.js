@@ -44,7 +44,7 @@ class ItemFormContainer extends Component {
 }
 
 ItemFormContainer.propTypes = {
-	onPostItem: React.PropTypes.func.isRequired
+	onPostItem: PropTypes.func.isRequired
 }
 
 export default ItemFormContainer;

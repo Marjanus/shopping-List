@@ -57,7 +57,7 @@ class ShoppingListContainer extends Component {
 			this.setState({data: newState});
 		})	
 		.catch((err) => {
-			console.log(error);
+			console.log(err);
 		}); 
 	}
 

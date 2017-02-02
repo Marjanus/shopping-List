@@ -31,10 +31,10 @@ function ItemForm(props){
 }
 
 ItemForm.propTypes = {
-	itemName: React.PropTypes.string.isRequired,
-	itemQuantity: React.PropTypes.string.isRequired,
-	onInputChange: React.PropTypes.func.isRequired,
-	onPostToServer: React.PropTypes.func.isRequired
+	itemName:PropTypes.string.isRequired,
+	itemQuantity:PropTypes.string.isRequired,
+	onInputChange:PropTypes.func.isRequired,
+	onPostToServer: PropTypes.func.isRequired
 }
 
 export default ItemForm;

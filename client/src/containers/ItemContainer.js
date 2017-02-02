@@ -63,13 +63,13 @@ class ItemContainer extends Component{
 }
 
 ItemContainer.propTypes = {
-	itemId: React.PropTypes.string.isRequired,
-	name: React.PropTypes.string.isRequired,
-	quantity: React.PropTypes.string.isRequired,
-	onDeleteItem: React.PropTypes.func.isRequired,
-	onUpdateItem: React.PropTypes.func.isRequired,
-	onSelectForUpdate: React.PropTypes.func.isRequired,
-	selectedId: React.PropTypes.string
+	itemId: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	quantity: PropTypes.string.isRequired,
+	onDeleteItem: PropTypes.func.isRequired,
+	onUpdateItem: PropTypes.func.isRequired,
+	onSelectForUpdate: PropTypes.func.isRequired,
+	selectedId: PropTypes.string
 };
 
 export default ItemContainer;

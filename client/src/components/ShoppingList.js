@@ -19,10 +19,10 @@ function ShoppingList(props){
 }
 
 ShoppingList.propTypes = {
-	items: React.PropTypes.array,
-	onDeleteItem: React.PropTypes.func.isRequired,
-	onUpdateItem: React.PropTypes.func.isRequired,
-	onPostItem: React.PropTypes.func.isRequired
+	items: PropTypes.array,
+	onDeleteItem: PropTypes.func.isRequired,
+	onUpdateItem: PropTypes.func.isRequired,
+	onPostItem: PropTypes.func.isRequired
 };
 
 export default ShoppingList;
