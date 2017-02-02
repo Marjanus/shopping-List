@@ -4,6 +4,9 @@ import ItemContainer from './ItemContainer';
 class ItemsListContainer extends Component{ 
 		constructor(props){
 			super(props);
+			this.state = {
+				selectedId: ""
+			};
 			this.handleSelectForUpdate = this.handleSelectForUpdate.bind(this);
 		}
 

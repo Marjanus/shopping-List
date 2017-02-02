@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, PropTypes} from 'react-bootstrap';
+import React, {PropTypes} from 'react';
+import {Button} from 'react-bootstrap';
 
 function Item(props){
 	let UpdateForm = (props.selectedId === props.itemId)  
@@ -24,7 +24,7 @@ function Item(props){
 
 	return (
 		<li>
-			Name: {props.name}
+			<h1>Name:</h1> {props.name}
 			<br/>
 			Quantity: {props.quantity}
 			<Button bsStyle='danger' onClick={props.onRemoveItem}>Delete</Button>
@@ -36,7 +36,7 @@ function Item(props){
 
 Item.propTypes = {
 	selectedId: PropTypes.string,
-	itemId:PropTypes.string.isRequired,
+	itemId: PropTypes.string.isRequired,
 	name: PropTypes.string.isRequired,
 	quantity: PropTypes.string.isRequired,
 	updateName: PropTypes.string,
