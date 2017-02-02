@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import ItemForm from '../components/ItemForm';
 
 class ItemFormContainer extends Component {
@@ -41,6 +41,10 @@ class ItemFormContainer extends Component {
 			/>
 		);
 	}
+}
+
+ItemFormContainer.propTypes = {
+	onPostItem: React.PropTypes.func.isRequired
 }
 
 export default ItemFormContainer;

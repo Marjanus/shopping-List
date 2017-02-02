@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import Item from '../components/Item';
 
 class ItemContainer extends Component{
@@ -61,5 +61,15 @@ class ItemContainer extends Component{
 		);
 	}
 }
+
+ItemContainer.propTypes = {
+	itemId: React.PropTypes.string.isRequired,
+	name: React.PropTypes.string.isRequired,
+	quantity: React.PropTypes.string.isRequired,
+	onDeleteItem: React.PropTypes.func.isRequired,
+	onUpdateItem: React.PropTypes.func.isRequired,
+	onSelectForUpdate: React.PropTypes.func.isRequired,
+	selectedId: React.PropTypes.string
+};
 
 export default ItemContainer;

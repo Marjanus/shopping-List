@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import ItemsListContainer from '../containers/ItemsListContainer';
 import ItemFormContainer from '../containers/ItemFormContainer';
 
@@ -17,5 +17,12 @@ function ShoppingList(props){
 			</div>	
 	);
 }
+
+ShoppingList.propTypes = {
+	items: React.PropTypes.array,
+	onDeleteItem: React.PropTypes.func.isRequired,
+	onUpdateItem: React.PropTypes.func.isRequired,
+	onPostItem: React.PropTypes.func.isRequired
+};
 
 export default ShoppingList;

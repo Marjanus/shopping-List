@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { Button } from 'react-bootstrap';
 
 function ItemForm(props){
@@ -28,6 +28,13 @@ function ItemForm(props){
 			</Button>
 		</div>
 	);
+}
+
+ItemForm.propTypes = {
+	itemName: React.PropTypes.string.isRequired,
+	itemQuantity: React.PropTypes.string.isRequired,
+	onInputChange: React.PropTypes.func.isRequired,
+	onPostToServer: React.PropTypes.func.isRequired
 }
 
 export default ItemForm;
