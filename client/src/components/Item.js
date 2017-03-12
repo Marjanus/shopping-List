@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {Button} from 'react-bootstrap';
+import styles from '../../styles/item.scss';
 
 function Item(props){
 	let UpdateForm = (props.selectedId === props.itemId)  
@@ -18,17 +19,32 @@ function Item(props){
 					value = {props.updateQuantity}
 					onChange = {props.onInputChange}
 				/>
-				<Button onClick={props.onUpdateItem}>Update Item</Button>
+				<button 
+					className="button__confirm"
+					onClick={props.onUpdateItem}
+				>
+					<i className="icon icon-ok"></i>
+				</button>
 			</form>
 			: null;
 
 	return (
 		<li>
-			<h1>Name:</h1> {props.name}
-			<br/>
+			<h4>{props.name}</h4>
+			<h1 className={styles.blue}>red</h1>
+			<button 
+				className="button-rounded__edit" 
+				onClick={props.onSelectItem}
+			>
+				<i className="icon icon-edit"></i>
+			</button>
 			Quantity: {props.quantity}
-			<Button bsStyle='danger' onClick={props.onRemoveItem}>Delete</Button>
-			<Button bsStyle='primary' onClick={props.onSelectItem}>Update</Button>
+			<button 
+				className="button-rounded__remove" 
+				onClick={props.onRemoveItem}
+			>
+				<i className="icon icon-remove"></i>
+			</button>
 			{UpdateForm}
 		</li>
 	);

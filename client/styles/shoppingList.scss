@@ -1,0 +1,39 @@
+@mixin button-rounded($color) {
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	border: 2px solid $color;
+	background-color: $color;
+}
+
+.button__confirm{
+	color: #fff;
+	background-color: green;
+	border: 2px solid green;
+}
+
+
+.button-rounded__remove {
+	@include button-rounded(red);
+
+	&:hover {
+		background-color: #ccc;
+	}
+}
+
+.button-rounded__edit {
+	@include button-rounded(blue);
+
+	&:hover {
+		background-color: #ccc;
+	}
+}
+
+.icon{
+  color: #fff;
+}
+
+.blue {
+    color: blue;
+}
+

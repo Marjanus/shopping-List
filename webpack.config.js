@@ -4,6 +4,7 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	filename: "index.html",
 	inject: "body"
 });
+var combineLoaders = require('webpack-combine-loaders');
 
 
 module.exports = {
@@ -20,7 +21,22 @@ module.exports = {
 	module: {
 		loaders: [
 			{test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
-            {test: /\.scss$/, loaders: ["style-loader", "css-loader", "sass-loader"]}
+            {
+                test: /\.scss$/, 
+                loader: combineLoaders([
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        query: {
+                            module: true,
+                            localIdentName: '[name]__[local]___[hash:base64:5]'
+                        }
+                    }, {
+                        loader: "sass-loader"
+                    }
+                ])
+            }
 		]
 	},
 

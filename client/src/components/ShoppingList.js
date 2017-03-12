@@ -1,20 +1,21 @@
 import React, {PropTypes} from 'react';
 import ItemsListContainer from '../containers/ItemsListContainer';
 import ItemFormContainer from '../containers/ItemFormContainer';
+import styles from '../../styles/shoppingList.scss';
 
 function ShoppingList(props){
 	return (
-		<div>
-				<h1>List</h1>
-				<ItemsListContainer
-					items={props.items}
-					onDeleteItem={props.onDeleteItem}
-					onUpdateItem={props.onUpdateItem}
-				/>
-				<ItemFormContainer 
-					onPostItem = {props.onPostItem}
-				/>
-			</div>	
+		<div className="col-md-6 col-md-offset-3 listContainer">
+            <h1 className={styles.blue}>List</h1>
+			<ItemFormContainer 
+				onPostItem = {props.onPostItem}
+			/>
+			<ItemsListContainer
+				items={props.items}
+				onDeleteItem={props.onDeleteItem}
+				onUpdateItem={props.onUpdateItem}
+			/>
+		</div>	
 	);
 }
 
